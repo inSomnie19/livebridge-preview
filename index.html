@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LIVE BRIDGE | TikTokエンターテイメントMCN | ライフサイエンスブリッジ合同会社</title>
+  <meta name="description" content="日本TikTokエンターテイメント配信のMCN事業。配信者の育成・マネジメント・収益化を一貫サポート。横浜発、配信者募集中！">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg-primary: #080810;
+      --bg-secondary: #0e0e1c;
+      --bg-card: #13132a;
+      --accent-purple: #9b5cf6;
+      --accent-pink: #ec4899;
+      --accent-gold: #f59e0b;
+      --text-primary: #f4f4ff;
+      --text-secondary: #8888aa;
+      --border: rgba(155, 92, 246, 0.18);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NAVIGATION ── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 0.9rem 2rem;
+      display: flex; justify-content: space-between; align-items: center;
+      background: rgba(8,8,16,0.88);
+      backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.3s;
+    }
+    .nav-logo {
+      font-size: 1.4rem; font-weight: 900; letter-spacing: 0.08em;
+      background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .nav-links { display: flex; gap: 1.75rem; list-style: none; align-items: center; }
+    .nav-links a {
+      color: var(--text-secondary); text-decoration: none;
+      font-size: 0.88rem; font-weight: 500; transition: color 0.25s;
+    }
+    .nav-links a:hover { color: var(--text-primary); }
+    .nav-cta {
+      background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink)) !important;
+      color: white !important; padding: 0.45rem 1.2rem !important;
+      border-radius: 2rem; font-weight: 700 !important;
+    }
+    .nav-hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 4px;
+    }
+    .nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--text-primary); transition: all 0.3s; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      text-align: center; position: relative; overflow: hidden; padding: 7rem 2rem 5rem;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 15% 60%, rgba(155,92,246,0.18) 0%, transparent 55%),
+        radial-gradient(ellipse at 85% 40%, rgba(236,72,153,0.18) 0%, transparent 55%),
+        radial-gradient(ellipse at 50% 105%, rgba(245,158,11,0.12) 0%, transparent 45%);
+    }
+    .hero-particles { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+    .particle {
+      position: absolute; border-radius: 50%; opacity: 0;
+      animation: floatUp linear infinite;
+    }
+    @keyframes floatUp {
+      0%   { transform: translateY(110vh) rotate(0deg); opacity: 0; }
+      8%   { opacity: 0.55; }
+      90%  { opacity: 0.45; }
+      100% { transform: translateY(-80px) rotate(360deg); opacity: 0; }
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 920px; }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(155,92,246,0.15); border: 1px solid rgba(155,92,246,0.45);
+      color: #b987ff; padding: 0.38rem 1.1rem; border-radius: 2rem;
+      font-size: 0.82rem; font-weight: 700; letter-spacing: 0.12em; margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-size: clamp(1.9rem, 5vw, 3.4rem); font-weight: 900; line-height: 1.3;
+      margin-bottom: 1.5rem;
+    }
+    .grad { background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink), var(--accent-gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-desc {
+      font-size: clamp(0.95rem, 2vw, 1.15rem); color: var(--text-secondary);
+      max-width: 620px; margin: 0 auto 2.5rem; font-weight: 400;
+    }
+    .hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+      color: white; padding: 0.82rem 2rem; border-radius: 2rem; text-decoration: none;
+      font-weight: 700; font-size: 0.97rem;
+      box-shadow: 0 4px 24px rgba(155,92,246,0.32); transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(155,92,246,0.44); }
+    .btn-secondary {
+      display: inline-block; border: 1px solid var(--border); color: var(--text-primary);
+      padding: 0.82rem 2rem; border-radius: 2rem; text-decoration: none;
+      font-weight: 500; font-size: 0.97rem; background: rgba(255,255,255,0.04);
+      transition: all 0.25s;
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,0.09); border-color: rgba(155,92,246,0.45); }
+
+    .hero-stats {
+      display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap;
+      margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border);
+    }
+    .stat-num {
+      font-size: 2rem; font-weight: 900;
+      background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .stat-label { font-size: 0.78rem; color: var(--text-secondary); margin-top: 0.2rem; }
+
+    /* ── SECTIONS ── */
+    .section { padding: 6rem 2rem; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-alt { background: var(--bg-secondary); }
+
+    .section-tag {
+      display: inline-block;
+      background: rgba(155,92,246,0.12); border: 1px solid rgba(155,92,246,0.28);
+      color: var(--accent-purple); padding: 0.28rem 0.9rem; border-radius: 2rem;
+      font-size: 0.76rem; font-weight: 700; letter-spacing: 0.18em; margin-bottom: 0.9rem;
+    }
+    .section-title { font-size: clamp(1.55rem, 3.5vw, 2.3rem); font-weight: 900; margin-bottom: 0.9rem; }
+    .section-desc { color: var(--text-secondary); max-width: 580px; font-size: 0.93rem; }
+
+    /* ── ABOUT ── */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: start; margin-top: 3rem; }
+    .about-text h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.9rem; }
+    .about-text p { color: var(--text-secondary); font-size: 0.92rem; line-height: 1.85; margin-bottom: 1rem; }
+    .phase-box {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 1.25rem;
+      padding: 1.75rem; position: relative; overflow: hidden;
+    }
+    .phase-box::before {
+      content: ''; position: absolute; top: -60%; right: -40%; width: 80%; height: 80%;
+      background: radial-gradient(circle, rgba(155,92,246,0.12), transparent);
+    }
+    .phase-item { display: flex; gap: 1rem; align-items: flex-start; padding: 0.9rem 0; border-bottom: 1px solid var(--border); }
+    .phase-item:last-child { border-bottom: none; }
+    .phase-num {
+      width: 34px; height: 34px; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-weight: 900; font-size: 0.82rem;
+    }
+    .phase-content h4 { font-weight: 700; font-size: 0.92rem; margin-bottom: 0.2rem; }
+    .phase-content p { color: var(--text-secondary); font-size: 0.82rem; }
+
+    /* ── SERVICES ── */
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; margin-top: 3rem; }
+    .service-card {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 1rem;
+      padding: 1.65rem; transition: all 0.28s; position: relative; overflow: hidden;
+    }
+    .service-card::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(155,92,246,0.06), transparent);
+      opacity: 0; transition: opacity 0.28s;
+    }
+    .service-card:hover { border-color: rgba(155,92,246,0.38); transform: translateY(-4px); }
+    .service-card:hover::after { opacity: 1; }
+    .service-icon { font-size: 2.3rem; margin-bottom: 0.9rem; }
+    .service-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.65rem; }
+    .service-card p { color: var(--text-secondary); font-size: 0.85rem; line-height: 1.72; }
+
+    /* ── FEATURES ── */
+    .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.75rem; margin-top: 3rem; }
+    .feature-card {
+      text-align: center; padding: 2.4rem 1.5rem;
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 1.4rem;
+      transition: all 0.28s;
+    }
+    .feature-card:hover { transform: translateY(-4px); border-color: rgba(236,72,153,0.38); }
+    .feature-icon { font-size: 2.8rem; margin-bottom: 1.1rem; }
+    .feature-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.7rem; }
+    .feature-card p { color: var(--text-secondary); font-size: 0.84rem; line-height: 1.8; }
+
+    /* ── RECRUITMENT ── */
+    .recruitment-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 3rem; align-items: start; }
+    .genre-tags { display: flex; flex-wrap: wrap; gap: 0.65rem; margin: 1.25rem 0 1.75rem; }
+    .genre-tag {
+      background: rgba(155,92,246,0.13); border: 1px solid rgba(155,92,246,0.28);
+      color: var(--text-primary); padding: 0.42rem 1.1rem; border-radius: 2rem;
+      font-size: 0.86rem; font-weight: 500;
+    }
+    .benefits-list { list-style: none; }
+    .benefits-list li {
+      display: flex; align-items: flex-start; gap: 0.7rem;
+      padding: 0.72rem 0; border-bottom: 1px solid var(--border);
+      font-size: 0.88rem; color: var(--text-secondary);
+    }
+    .benefits-list li:last-child { border-bottom: none; }
+    .check { color: var(--accent-purple); font-weight: 900; flex-shrink: 0; margin-top: 2px; }
+
+    .apply-box {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 1.4rem; padding: 2rem;
+    }
+    .apply-box h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 1.5rem; text-align: center; }
+    .form-group { margin-bottom: 1.15rem; }
+    .form-group label { display: block; font-size: 0.82rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 0.38rem; }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%; background: var(--bg-secondary); border: 1px solid var(--border);
+      color: var(--text-primary); padding: 0.7rem 0.95rem; border-radius: 0.6rem;
+      font-size: 0.88rem; font-family: 'Noto Sans JP', sans-serif; outline: none; transition: border-color 0.25s;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--accent-purple); }
+    .form-group select option { background: #1a1a30; }
+    .form-group textarea { height: 90px; resize: vertical; }
+    .form-submit {
+      width: 100%;
+      background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+      color: white; border: none; padding: 0.82rem; border-radius: 2rem;
+      font-size: 0.97rem; font-weight: 700; cursor: pointer;
+      font-family: 'Noto Sans JP', sans-serif; transition: opacity 0.25s, transform 0.25s;
+    }
+    .form-submit:hover { opacity: 0.88; transform: translateY(-1px); }
+    .form-note { font-size: 0.76rem; color: var(--text-secondary); text-align: center; margin-top: 0.7rem; }
+
+    /* ── CONTACT ── */
+    .contact-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; margin-top: 3rem; }
+    .contact-card {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 1rem;
+      padding: 1.75rem; text-align: center; transition: border-color 0.25s;
+    }
+    .contact-card:hover { border-color: rgba(155,92,246,0.38); }
+    .contact-card-icon { font-size: 1.9rem; margin-bottom: 0.7rem; }
+    .contact-card h4 { font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 0.45rem; }
+    .contact-card p { font-size: 0.9rem; font-weight: 600; line-height: 1.6; }
+
+    /* ── COMPANY TABLE ── */
+    .company-table { width: 100%; border-collapse: collapse; margin-top: 2rem; font-size: 0.9rem; }
+    .company-table tr { border-bottom: 1px solid var(--border); }
+    .company-table th {
+      width: 200px; padding: 1rem 1.5rem 1rem 0;
+      text-align: left; color: var(--text-secondary); font-weight: 600; vertical-align: top;
+    }
+    .company-table td { padding: 1rem 0; line-height: 1.75; }
+
+    /* ── FOOTER ── */
+    footer { background: #050508; border-top: 1px solid var(--border); padding: 3rem 2rem; text-align: center; }
+    .footer-logo {
+      font-size: 1.4rem; font-weight: 900; letter-spacing: 0.08em; margin-bottom: 1.25rem;
+      background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .footer-links { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 1.75rem; }
+    .footer-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.84rem; transition: color 0.25s; }
+    .footer-links a:hover { color: var(--text-primary); }
+    .footer-copy { color: var(--text-secondary); font-size: 0.78rem; }
+
+    /* ── SCROLL ANIMATION ── */
+    .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .fade-up:nth-child(2) { transition-delay: 0.1s; }
+    .fade-up:nth-child(3) { transition-delay: 0.2s; }
+    .fade-up:nth-child(4) { transition-delay: 0.3s; }
+    .fade-up:nth-child(5) { transition-delay: 0.15s; }
+    .fade-up:nth-child(6) { transition-delay: 0.25s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none; position: fixed; top: 58px; left: 0; right: 0;
+        background: rgba(8,8,16,0.98); flex-direction: column; align-items: center;
+        padding: 2rem 1rem; gap: 1.4rem; border-bottom: 1px solid var(--border);
+      }
+      .nav-links.open { display: flex; }
+      .nav-hamburger { display: flex; }
+      .about-grid, .recruitment-grid { grid-template-columns: 1fr; }
+      .services-grid, .features-grid, .contact-cards { grid-template-columns: 1fr; }
+      .hero-stats { gap: 2rem; }
+    }
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="nav" id="nav">
+  <div class="nav-logo">LIVE BRIDGE</div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">事業紹介</a></li>
+    <li><a href="#services">サービス</a></li>
+    <li><a href="#recruitment">配信者募集</a></li>
+    <li><a href="#company">会社概要</a></li>
+    <li><a href="#contact">お問い合わせ</a></li>
+    <li><a href="#recruitment" class="nav-cta">今すぐ応募</a></li>
+  </ul>
+  <button class="nav-hamburger" onclick="toggleMenu()" aria-label="メニューを開く">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-particles" id="particles"></div>
+  <div class="hero-content">
+    <div class="hero-badge">🎌 JAPAN TikTok ENTERTAINMENT MCN</div>
+    <h1>
+      日本TikTok<br>
+      エンターテイメント市場を、<br>
+      <span class="grad">共に拓こう。</span>
+    </h1>
+    <p class="hero-desc">
+      配信者育成・マネジメント・収益最大化を一貫サポート。<br>
+      二次元・アイドル・音楽・癒し系コンテンツで、あなたの可能性を最大化します。
+    </p>
+    <div class="hero-buttons">
+      <a href="#recruitment" class="btn-primary">配信者登録はこちら →</a>
+      <a href="#about" class="btn-secondary">事業概要を見る</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">4,200万+</div>
+        <div class="stat-label">TikTok日本月間アクティブユーザー</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">45%</div>
+        <div class="stat-label">工会平均利益率</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">180%</div>
+        <div class="stat-label">2026年ライブ配信売上前年比</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section section-alt" id="about">
+  <div class="section-inner">
+    <div class="section-tag">ABOUT US</div>
+    <h2 class="section-title">日本TikTokを、プロと共に。</h2>
+    <p class="section-desc">成熟したMCN運営モデルを日本市場にローカライズ。配信者一人ひとりの才能を最大限に引き出します。</p>
+
+    <div class="about-grid">
+      <div class="about-text fade-up">
+        <h3>なぜ今、日本TikTok市場なのか</h3>
+        <p>日本TikTokの月間アクティブユーザーは4,200万人を超え、人口の34%をカバー。エンターテイメントライブ配信の浸透率は31%に達し、2026年の直播市場規模は1.8兆円超が見込まれています。</p>
+        <p>偶像文化・宅経済が成熟した日本は、世界屈指の高ARPU市場です。グループ配信の単回最高GMVは3億円を超え、ユニオン平均利益率は45%。プラットフォームも新規ユニオンに3ヶ月手数料免除・初月露出300%アップの優遇を提供しています。</p>
+        <p>本土ユニオンの力が弱く、グループ配信の専門ノウハウが不足している今がまさに黄金の参入タイミング。私たちと共に、この市場のパイオニアになりましょう。</p>
+      </div>
+      <div class="phase-box fade-up">
+        <div class="phase-item">
+          <div class="phase-num">1</div>
+          <div class="phase-content">
+            <h4>立ち上げ期（1〜6ヶ月）</h4>
+            <p>30〜50名の配信者と契約・育成スタート。月間売上500万円突破を目指します。</p>
+          </div>
+        </div>
+        <div class="phase-item">
+          <div class="phase-num">2</div>
+          <div class="phase-content">
+            <h4>成長期（7〜18ヶ月）</h4>
+            <p>100〜150名に拡大。トップ配信者2〜3名を輩出し、月間売上2,000万円突破。</p>
+          </div>
+        </div>
+        <div class="phase-item">
+          <div class="phase-num">3</div>
+          <div class="phase-content">
+            <h4>成熟期（19〜36ヶ月）</h4>
+            <p>300名超で日本TOP3ユニオン入り。月間売上5,000万円、東アジア展開へ。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section" id="services">
+  <div class="section-inner">
+    <div class="section-tag">SERVICES</div>
+    <h2 class="section-title">配信者に提供するサービス</h2>
+    <p class="section-desc">プロとして活躍するための全サポートを、一つの場所で。</p>
+
+    <div class="services-grid">
+      <div class="service-card fade-up">
+        <div class="service-icon">🌱</div>
+        <h3>配信者育成・孵化</h3>
+        <p>才能開花のための専門研修（才芸・トーク・配信技術）、コンテンツ企画、ファン獲得戦略まで一貫サポート。最短でトップ配信者を育成します。</p>
+      </div>
+      <div class="service-card fade-up">
+        <div class="service-icon">🎭</div>
+        <h3>グループ配信運営</h3>
+        <p>3〜8人のグループ配信（団播）を中核に、プラットフォームの最大支援と最高売上を実現。国内実証済みの運営ノウハウをフル活用します。</p>
+      </div>
+      <div class="service-card fade-up">
+        <div class="service-icon">📈</div>
+        <h3>収益最大化サポート</h3>
+        <p>投げ銭分配・プラットフォーム報奨金・広告案件・ライブコマースなど、多角的な収益化を戦略的に支援します。</p>
+      </div>
+      <div class="service-card fade-up">
+        <div class="service-icon">🤝</div>
+        <h3>商業案件マッチング</h3>
+        <p>美容・アパレル・二次元ブランドとのタイアップ案件、広告出演機会を積極提供。配信者の価値を市場で最大化します。</p>
+      </div>
+      <div class="service-card fade-up">
+        <div class="service-icon">🎬</div>
+        <h3>コンテンツ制作支援</h3>
+        <p>二次元カバー・コスプレ・和文化体験・アイドル演出など、日本市場で刺さるコンテンツ制作を全面サポートします。</p>
+      </div>
+      <div class="service-card fade-up">
+        <div class="service-icon">👑</div>
+        <h3>ファンイベント企画</h3>
+        <p>オンライン投票・ファンミーティング・コラボイベントなど、ファンとの絆を深めるコミュニティ施策を企画・実施します。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section section-alt">
+  <div class="section-inner">
+    <div class="section-tag">WHY US</div>
+    <h2 class="section-title">選ばれる3つの理由</h2>
+    <p class="section-desc">LIVE BRIDGEが日本TikTok市場で圧倒的優位性を持つ根拠。</p>
+
+    <div class="features-grid">
+      <div class="feature-card fade-up">
+        <div class="feature-icon">🇯🇵</div>
+        <h3>徹底したローカライズ運営</h3>
+        <p>日本語ネイティブの運営チームが、日本のファン文化・礼儀・プラットフォームルールを熟知。文化的ミスマッチをゼロにし、ユーザー滞在時間を12分（東南アジアの2.4倍）に引き上げます。</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon">🚀</div>
+        <h3>実績ある専門孵化システム</h3>
+        <p>素人→中堅→トップへの段階的成長をサポートする育成プログラム。実証済みのノウハウを日本市場向けにカスタマイズし、最短でトップ配信者を輩出します。</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon">💰</div>
+        <h3>業界最高水準の多角化収益</h3>
+        <p>投げ銭・報奨金・ブランドコラボ・ファンイベント・IP展開まで複数の収益ルートを同時展開。配信者の収入を最大化しつつ安定した収益基盤を構築します。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RECRUITMENT -->
+<section class="section" id="recruitment">
+  <div class="section-inner">
+    <div class="section-tag">JOIN US</div>
+    <h2 class="section-title">配信者募集</h2>
+    <p class="section-desc">あなたの才能を、日本最大のエンターテイメント市場で輝かせませんか。</p>
+
+    <div class="recruitment-grid">
+      <div class="fade-up">
+        <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:0.5rem;">募集ジャンル</h3>
+        <div class="genre-tags">
+          <span class="genre-tag">🎨 二次元・アニメ</span>
+          <span class="genre-tag">🎤 アイドル・歌唱</span>
+          <span class="genre-tag">🎵 音楽・演奏</span>
+          <span class="genre-tag">✨ 癒し・トーク</span>
+          <span class="genre-tag">💃 ダンス・パフォーマンス</span>
+          <span class="genre-tag">🎮 ゲーム実況</span>
+        </div>
+
+        <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:0.8rem;">提供するサポート</h3>
+        <ul class="benefits-list">
+          <li>
+            <span class="check">✦</span>
+            <span><strong>専門育成プログラム</strong> — 才芸・日本語・配信テクニックの専門研修を提供</span>
+          </li>
+          <li>
+            <span class="check">✦</span>
+            <span><strong>流量（リーチ）支援</strong> — プラットフォーム新人優遇・初月露出300%アップ</span>
+          </li>
+          <li>
+            <span class="check">✦</span>
+            <span><strong>高い分配率</strong> — 業界水準以上の投げ銭分配（詳細は面談にて）</span>
+          </li>
+          <li>
+            <span class="check">✦</span>
+            <span><strong>商業案件紹介</strong> — ブランドタイアップ・広告案件を積極提供</span>
+          </li>
+          <li>
+            <span class="check">✦</span>
+            <span><strong>コンテンツ制作支援</strong> — 企画・構成・演出の専任担当がサポート</span>
+          </li>
+          <li>
+            <span class="check">✦</span>
+            <span><strong>コンプライアンス対応</strong> — 正規ライセンス・プラットフォーム規約に完全準拠</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="fade-up">
+        <div class="apply-box">
+          <h3>📩 まずはお問い合わせを</h3>
+          <div class="form-group">
+            <label for="f-name">お名前（ニックネーム可）</label>
+            <input type="text" id="f-name" placeholder="例：さくら">
+          </div>
+          <div class="form-group">
+            <label for="f-genre">活動ジャンル</label>
+            <select id="f-genre">
+              <option value="">選択してください</option>
+              <option>二次元・アニメ</option>
+              <option>アイドル・歌唱</option>
+              <option>音楽・演奏</option>
+              <option>癒し・トーク</option>
+              <option>ダンス・パフォーマンス</option>
+              <option>その他</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="f-exp">配信経験</label>
+            <select id="f-exp">
+              <option value="">選択してください</option>
+              <option>未経験（これから始めたい）</option>
+              <option>3ヶ月未満</option>
+              <option>3ヶ月〜1年</option>
+              <option>1年以上</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="f-msg">メッセージ・自己PR（任意）</label>
+            <textarea id="f-msg" placeholder="自己PRや質問など、自由にお書きください。"></textarea>
+          </div>
+          <button class="form-submit" onclick="handleSubmit()">応募する →</button>
+          <p class="form-note">※ お問い合わせ内容は採用目的のみに使用いたします。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section section-alt" id="contact">
+  <div class="section-inner">
+    <div class="section-tag">CONTACT</div>
+    <h2 class="section-title">お問い合わせ</h2>
+    <p class="section-desc">ご質問・ビジネスに関するお問い合わせはこちらから。</p>
+
+    <div class="contact-cards">
+      <div class="contact-card fade-up">
+        <div class="contact-card-icon">📧</div>
+        <h4>メール</h4>
+        <p>info@livebridgejp.com</p>
+      </div>
+      <div class="contact-card fade-up">
+        <div class="contact-card-icon">📍</div>
+        <h4>所在地</h4>
+        <p>横浜市中区吉浜町2番地36<br>BCCビル203</p>
+      </div>
+      <div class="contact-card fade-up">
+        <div class="contact-card-icon">🕒</div>
+        <h4>営業時間</h4>
+        <p>平日 10:00〜18:00<br>（土日祝定休）</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPANY INFO -->
+<section class="section" id="company">
+  <div class="section-inner">
+    <div class="section-tag">COMPANY</div>
+    <h2 class="section-title">会社概要</h2>
+
+    <table class="company-table fade-up">
+      <tr>
+        <th>商号</th>
+        <td>ライフサイエンスブリッジ合同会社<br><span style="color:var(--text-secondary);font-size:0.83rem;">Life Science Bridge LLC</span></td>
+      </tr>
+      <tr>
+        <th>代表者</th>
+        <td>蒋 佳偉（JIANG JIAWEI）</td>
+      </tr>
+      <tr>
+        <th>所在地</th>
+        <td>〒231-0013 神奈川県横浜市中区吉浜町2番地36 BCCビル203</td>
+      </tr>
+      <tr>
+        <th>事業内容</th>
+        <td>
+          ・TikTokエンターテイメントライブ配信MCN事業<br>
+          ・配信者（ライバー）の育成・マネジメント<br>
+          ・コンテンツ制作・プロデュース事業<br>
+          ・インフルエンサーマーケティング事業
+        </td>
+      </tr>
+      <tr>
+        <th>設立</th>
+        <td>2026年</td>
+      </tr>
+    </table>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">LIVE BRIDGE</div>
+  <div class="footer-links">
+    <a href="#about">事業紹介</a>
+    <a href="#services">サービス</a>
+    <a href="#recruitment">配信者募集</a>
+    <a href="#company">会社概要</a>
+    <a href="#contact">お問い合わせ</a>
+    <a href="privacy.html">プライバシーポリシー</a>
+  </div>
+  <p class="footer-copy">© 2026 ライフサイエンスブリッジ合同会社 All Rights Reserved.</p>
+</footer>
+
+<script>
+  // Mobile menu
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.nav')) {
+      document.getElementById('navLinks').classList.remove('open');
+    }
+  });
+
+  // Particles
+  (function createParticles() {
+    const c = document.getElementById('particles');
+    const cols = ['#9b5cf6','#ec4899','#f59e0b','#60a5fa','#34d399'];
+    for (let i = 0; i < 22; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      const s = Math.random() * 5 + 2;
+      p.style.cssText = `
+        width:${s}px;height:${s}px;
+        left:${Math.random()*100}%;
+        animation-duration:${Math.random()*14+10}s;
+        animation-delay:${Math.random()*12}s;
+        background:${cols[Math.floor(Math.random()*cols.length)]};
+      `;
+      c.appendChild(p);
+    }
+  })();
+
+  // Scroll fade-in
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+  // Nav scroll style
+  window.addEventListener('scroll', () => {
+    document.getElementById('nav').style.background =
+      window.scrollY > 60 ? 'rgba(8,8,16,0.98)' : 'rgba(8,8,16,0.88)';
+  });
+
+  // Form submit
+  function handleSubmit() {
+    const name = document.getElementById('f-name').value.trim();
+    const genre = document.getElementById('f-genre').value;
+    if (!name || !genre) {
+      alert('お名前と活動ジャンルをご入力ください。');
+      return;
+    }
+    alert('お問い合わせありがとうございます！\n担当者より3営業日以内にご連絡いたします。');
+    document.getElementById('f-name').value = '';
+    document.getElementById('f-genre').value = '';
+    document.getElementById('f-exp').value = '';
+    document.getElementById('f-msg').value = '';
+  }
+</script>
+</body>
+</html>
